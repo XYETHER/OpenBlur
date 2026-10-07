@@ -42,7 +42,7 @@ jobs:
           ./gradlew --no-daemon clean testDebugUnitTest lintDebug assembleDebug assembleRelease
 
       - name: Upload successful build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: openblur-apks
           if-no-files-found: error
