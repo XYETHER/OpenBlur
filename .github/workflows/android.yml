@@ -37,7 +37,9 @@ jobs:
           sdkmanager "platforms;android-34" "build-tools;34.0.0" "cmake;3.22.1" "ndk;25.1.8937393"
 
       - name: Run host verification
-        run: ./gradlew --no-daemon clean testDebugUnitTest lintDebug assembleDebug assembleRelease
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon clean testDebugUnitTest lintDebug assembleDebug assembleRelease
 
       - name: Upload successful build artifacts
         uses: actions/upload-artifact@v4
