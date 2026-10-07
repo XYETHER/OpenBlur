@@ -1,0 +1,3 @@
+x264 assembly source notices
+
+The MVTools vendor tree contains x264 assembly sources under app/src/main/cpp/vendor/mvtools/src/asm/. Their retained headers identify the x264 project and state GPL-2.0-or-later terms (or a commercial license from x264). OpenBlur distributes these sources and the linked binary under GPL-2.0-or-later. See GPL-2.0.txt and the corresponding source tree.

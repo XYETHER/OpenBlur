@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible OpenBlur problem
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach personal videos, keystores, credentials, or tokens. A short synthetic clip is preferred.
+  - type: input
+    id: version
+    attributes:
+      label: OpenBlur version / commit
+      placeholder: "0.2.7 or abc1234"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and Android version
+      placeholder: "Samsung SM-S928B, Android 16"
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input media and selected settings
+      description: Codec, resolution, FPS/VFR, audio, trim range, Dynamic blur state, vector quality.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Import …
+        2. Set …
+        3. Export …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or error text
+      render: shell

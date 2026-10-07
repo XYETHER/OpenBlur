@@ -1,0 +1,39 @@
+# Local SDK, Gradle and IDE state
+local.properties
+.gradle/
+.idea/
+.kotlin/
+**/build/
+**/.cxx/
+*.iml
+
+# Signing material and local secrets
+*.jks
+*.keystore
+key.properties
+.env
+.env.*
+!.env.example
+
+# Local experiments, generated media, device captures, and test artifacts
+experiments/
+reports/
+logs/
+renders/
+tools/native/upstream/
+tools/native/build*/
+tools/native/java-classes/
+tools/native/java-dex/
+tools/native/native-jni-test.jar
+tools/native/*.log
+tools/native/*.json
+*.apk
+*.aab
+__pycache__/
+
+# Private release material
+*.p12
+*.pem
+*.key
+*.pass
+/signing/
