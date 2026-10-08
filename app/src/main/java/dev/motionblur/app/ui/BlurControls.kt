@@ -90,7 +90,7 @@ import androidx.compose.ui.unit.dp
         Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
             Text("Dynamic blur", style = MaterialTheme.typography.bodyMedium)
-            Help(if (state.draft.dynamicBlur) "Adapts around scene changes." else "Fixed MVTools-style motion blur.")
+            Help(if (state.draft.dynamicBlur) "Adapts around scene changes." else "Uses fixed blur settings.")
         }
     }
 }

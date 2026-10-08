@@ -25,7 +25,7 @@ object Studio {
     val Panel = Color(0xFF1C202A)
     val Text = Color(0xFFF3F5FA)
     val Muted = Color(0xFF9BA1B1)
-    val Quiet = Color(0xFF697080)
+    val Quiet = Color(0xFF9098AA)
     val Line = Color(0xFF282D38)
     val Edge = Color(0xFF444B5A)
     val Green = Color(0xFF8CFF88)

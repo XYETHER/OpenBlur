@@ -1,66 +1,37 @@
-# OpenBlur 💨
+# OpenBlur
 
-Add motion blur to your videos on Android. Made by **xyether**, with processing that runs locally on your phone.
+Motion blur for Android, made by xyether. Import a video, choose how much blur you want, and preview it before exporting.
 
-**[Download the APK](https://github.com/XYETHER/OpenBlur/releases/latest)** · [Report a bug](https://github.com/XYETHER/OpenBlur/issues)
+[Download the APK](https://github.com/XYETHER/OpenBlur/releases/latest)
 
-## What it does
+## Using OpenBlur
 
-- Adds motion-compensated blur to a selected part of a video.
-- Offers Light, Medium, Strong, and Extreme blur presets.
-- Lets you preview the result and compare it with the original.
-- Includes adaptive Dynamic blur and a fixed blur mode.
-- Exports H.264 or supported H.265 in MP4, with supported AAC audio.
-- Includes bitrate and supported encoding-speed controls in Settings.
+Open **Studio**, import your video, and select a range. Start with a blur preset, then render a preview to compare the original with the result. **Advanced** has vector quality and Dynamic blur controls if you want to adjust them.
 
-No account, uploads, or internet connection needed.
+In **Settings → Encoding**, choose H.264 or H.265 and set the bitrate. Some phones also let you adjust encoding speed. Export when you're happy with the preview, then use **Save As** to keep a copy or **Share** to send it.
 
-## How to use it
+You can open Advanced while exporting. Any changes you make apply to the next export.
 
-1. Install the APK from Releases.
-2. Import a video in **Studio** and select the range you want.
-3. Choose a blur preset. Open **Advanced** if you want to adjust vector quality or Dynamic blur.
-4. Render a preview and compare **Original** with **Processed**.
-5. In **Settings → Encoding**, choose your encoder and bitrate.
-6. Export, then **Save As** or **Share**.
+## Before you install
 
-Opening Advanced won’t cancel an export. If you change settings while exporting, the changes apply to the next export.
+You'll need Android 8.0 or newer, a 64-bit ARM phone, OpenGL ES 3.1, and compatible video hardware. OpenBlur currently supports SDR video; HDR and protected videos won't work.
 
-## Settings
+Processing runs on your phone. Exports stay in app storage until you save a copy, so save anything you want to keep before uninstalling.
 
-| Setting | What it changes |
-| --- | --- |
-| Blur strength | How much motion blur is added. |
-| Vector quality | How much work goes into motion analysis. Higher settings take longer. |
-| Dynamic blur | Adapts the blur around scene changes. Turn it off for fixed blur. |
-| Encoder | H.264 or H.265, depending on your phone. |
-| Bitrate | Automatic, or your own value. More bitrate usually retains more detail and makes a larger file. |
-| Encoding speed | Faster or higher quality, when the hardware encoder supports adjustable effort. |
+This is still in development. Blur can look rough on some clips, and phone compatibility varies. [Report a problem](https://github.com/XYETHER/OpenBlur/issues) with your phone model, Android version, and the settings you used.
 
-## Requirements
+## Building
 
-- **Android 8.0+**, with a **64-bit ARM** processor.
-- **OpenGL ES 3.1+** and compatible video decoding/encoding support.
-- SDR video. HDR and protected media aren’t supported yet.
-
-> 🚧 Still being developed. Results aren’t perfect, and compatibility varies by phone. If something goes wrong, report your device, Android version, and settings in an issue.
-
-Save any exports you want to keep before uninstalling the app.
-
-## Build from source
-
-Use Android Studio with **JDK 17+**, **Android SDK 34**, **NDK 25.1.8937393**, and **CMake 3.22.1**.
+Use JDK 17+, Android SDK 34, NDK 25.1.8937393, and CMake 3.22.1.
 
 ```bash
 ./gradlew testDebugUnitTest assembleDebug
 ```
 
-On Windows, use `gradlew.bat`. Release builds need your own signing key. Native source is included; a normal build doesn’t download MVTools source.
+On Windows, use `gradlew.bat`. Release builds need your own signing key. The native source is included in the repo.
 
-More details: [architecture](docs/ARCHITECTURE.md) · [native source and credits](docs/NATIVE-SOURCE.md) · [building a release](docs/RELEASE.md).
+[Architecture](docs/ARCHITECTURE.md) · [Native source](docs/NATIVE-SOURCE.md) · [Release builds](docs/RELEASE.md)
 
-## Credits and license
+OpenBlur includes adapted [MVTools](https://github.com/dubhater/vapoursynth-mvtools) code, [VapourSynth](https://github.com/vapoursynth/vapoursynth) headers, and Inter and Manrope fonts. See [NOTICE.md](NOTICE.md) for credits and licenses.
 
-Created by **xyether**. Includes adapted [MVTools](https://github.com/dubhater/vapoursynth-mvtools) code and [VapourSynth](https://github.com/vapoursynth/vapoursynth) headers. Uses Inter and Manrope fonts.
-
-OpenBlur is licensed under **GPL-2.0-or-later**. See [LICENSE](LICENSE) and [third-party notices](NOTICE.md). The corresponding source for each APK is available with its release.
+Licensed under [GPL-2.0-or-later](LICENSE). Each APK release includes its corresponding source.

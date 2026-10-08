@@ -61,7 +61,7 @@ private val awakeOwners = WeakHashMap<View, Pair<Int, Boolean>>()
                     Help("${(render.progress * 100).toInt()}%", Modifier.weight(1f))
                     TextButton(onClick = state::cancelRender, enabled = !render.cancelling) { Text("Cancel render") }
                 }
-                if (render.cancelling) Help("Waiting for the current worker to release video resources.")
+                if (render.cancelling) Help("Finishing cleanup…")
             }
             is RenderState.Failed -> {
                 Help(render.message)
@@ -73,7 +73,7 @@ private val awakeOwners = WeakHashMap<View, Pair<Int, Boolean>>()
         state.latestExport?.let { file ->
             Spacer(Modifier.height(12.dp))
             Text("Latest export", style = MaterialTheme.typography.titleMedium)
-            Help("In app storage, not your gallery. Save As keeps a copy outside OpenBlur.")
+            Help("Tap Save As to keep a copy in your files or gallery.")
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 TextButton(onClick = {
                     try {

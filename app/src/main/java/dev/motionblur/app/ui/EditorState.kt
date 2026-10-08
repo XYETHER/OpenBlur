@@ -33,7 +33,7 @@ sealed interface RenderState {
     data class Complete(val request: RenderRequest) : RenderState
 }
 
-/** Immutable inputs/results; one native worker at a time, even while a cancelled VM is clearing. */
+/** Only one worker may own video resources, including during cancellation cleanup. */
 class EditorState(application: Application) : AndroidViewModel(application) {
     private val prefs = application.getSharedPreferences("studio", 0)
     var draft by mutableStateOf(readDraft()); private set
@@ -214,7 +214,7 @@ class EditorState(application: Application) : AndroidViewModel(application) {
                 if (kind == RenderKind.EXPORT) {
                     latestExport = output
                     prefs.edit().putString("latestExport", output.name).apply()
-                    outputMessage = "Export ready in app storage. Use Save As to keep a copy outside OpenBlur."
+                    outputMessage = "Export finished. Tap Save As to keep a copy."
                 } else {
                     previewArtifact = RenderArtifact(output, request.startMs, request.endMs)
                     showProcessedPreview = true
@@ -326,9 +326,9 @@ class EditorState(application: Application) : AndroidViewModel(application) {
                     }
                     check(bytes > 0 && readBack == bytes && expected.digest().contentEquals(actual.digest()))
                 }
-                outputMessage = "Saved copy verified. Your export remains available in OpenBlur."
+                outputMessage = "Saved copy verified. You can still share this export from OpenBlur."
             } catch (cancelled: CancellationException) { throw cancelled }
-            catch (_: Exception) { outputMessage = "Could not save or verify that copy. Your export is safe in OpenBlur; try Save As again." }
+            catch (_: Exception) { outputMessage = "Couldn't save the copy. Your export is safe in OpenBlur; try Save As again." }
             finally { saving = false }
         }
     }
@@ -355,8 +355,7 @@ class EditorState(application: Application) : AndroidViewModel(application) {
             quality = prefs.getString("quality", d.quality).takeIf { it in setOf("Fast", "Balanced", "Quality", "Ultra quality") } ?: d.quality,
             advanced = prefs.getBoolean("advanced", false),
             dynamicBlur = prefs.getBoolean("dynamicBlur", true),
-            // Migrate old CPU/Auto drafts to the product's explicit GPU default. There is no
-            // persisted CPU fallback preference because a failed GPU probe is actionable failure.
+            // Old CPU drafts use the GPU now; failed capability checks do not trigger a CPU fallback.
             compute = "GPU",
             fallback = "Never",
             decoder = prefs.getString("decoder", "Auto (hardware first)") ?: "Auto (hardware first)",

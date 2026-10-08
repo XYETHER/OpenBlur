@@ -27,8 +27,6 @@ import androidx.compose.ui.unit.dp
             SurfaceCard(Modifier.fillMaxWidth()) {
                 Text("Processing", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(8.dp))
-                Help("GPU · Motion estimation and blur")
-                Help("Codec · Auto (device-supported decode and encode)")
                 Row(Modifier.fillMaxWidth().clickable(role = Role.Button) { choosingQuality = true }.padding(vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) { Text("Vector quality"); Help(state.draft.quality) }
                     Text("Change  ›", color = Studio.Muted, style = MaterialTheme.typography.labelMedium)
@@ -40,7 +38,7 @@ import androidx.compose.ui.unit.dp
                     Spacer(Modifier.width(10.dp))
                     Column(Modifier.weight(1f)) {
                         Text("Dynamic blur")
-                        Help(if (state.draft.dynamicBlur) "Adapts around scene changes." else "Fixed MVTools-style motion blur.")
+                        Help(if (state.draft.dynamicBlur) "Adapts around scene changes." else "Uses fixed blur settings.")
                     }
                 }
             }
@@ -50,7 +48,7 @@ import androidx.compose.ui.unit.dp
         item {
             SurfaceCard(Modifier.fillMaxWidth()) {
                 Text("Privacy", style = MaterialTheme.typography.titleMedium)
-                Help("Processing stays on this device. Share and Save As send a copy only to the app or location you choose.")
+                Help("OpenBlur processes videos on your phone. You choose where to save or share them.")
             }
         }
         item {
@@ -67,7 +65,7 @@ import androidx.compose.ui.unit.dp
         }
     }
     if (choosingQuality) ChoiceDialog("Vector quality", state.draft.quality, listOf("Fast", "Balanced", "Quality", "Ultra quality"),
-        "Changes apply to the next export; a preview is reset when its settings change.", { choosingQuality = false }) {
+        "Higher settings take longer to process. Changes apply to your next export.", { choosingQuality = false }) {
         state.updateDraft(state.draft.copy(quality = it))
     }
     if (license) AlertDialog(onDismissRequest = { license = false }, containerColor = Studio.Raised, title = { Text("Licenses") }, text = {

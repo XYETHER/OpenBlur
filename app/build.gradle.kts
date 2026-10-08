@@ -18,8 +18,8 @@ android {
         ndk { abiFilters += "arm64-v8a" }
         externalNativeBuild { cmake { targets += "openblur_mvtools" } }
         targetSdk = 34
-        versionCode = 12
-        versionName = "0.2.8-rc2"
+        versionCode = 13
+        versionName = "0.2.9"
         manifestPlaceholders["appLabel"] = "OpenBlur"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
